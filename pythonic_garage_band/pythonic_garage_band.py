@@ -4,11 +4,18 @@ class Band:
     def __init__(self,name,members):
         self.name = name
         self.members = members
-        Band.bands=members
+        Band.bands.append({'name':name,'members':members})
 
     def play_solos(self):
-        
-            return ['face melting guitar solo', 'bom bom buh bom', 'rattle boom crash']
+        play_solos_arr=[]
+        for i in self.members:
+            if str(i).split()[-1] == 'guitar':
+                play_solos_arr.append('face melting guitar solo')
+            if str(i).split()[-1] == 'bass':
+                play_solos_arr.append('bom bom buh bom')
+            if str(i).split()[-1] == 'drums':
+                play_solos_arr.append('rattle boom crash')
+        return play_solos_arr
 
     def __str__(self):
         return f"The band {self.name} has the following members {self.members.join(',')}"
@@ -24,15 +31,13 @@ class Band:
 
 
 class Musician:
-    members=[]
-    playSolo=[]
+    
     def __init__(self,name,instrument,role,solo_play):
         self.name=name
         self.instrument=instrument
         self.role=role
         self.solo_play = solo_play
-        Musician.members.append(name)
-        Musician.playSolo.append(solo_play)
+        
 
     
     
@@ -87,10 +92,6 @@ class Drummer(Musician):
 
 
 
-os=Guitarist("Joan Jett")
-
-
-print(Musician.members)
 
 
 
